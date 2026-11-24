@@ -1,0 +1,39 @@
+
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def jmeVersion = '3.8.0-stable'
+
+dependencies {
+    implementation "org.jmonkeyengine:jme3-core:$jmeVersion"
+    implementation "org.jmonkeyengine:jme3-desktop:$jmeVersion"
+    implementation "org.jmonkeyengine:jme3-jbullet:$jmeVersion"
+
+    runtimeOnly "org.jmonkeyengine:jme3-lwjgl3:$jmeVersion"
+}
+
+application {
+    mainClass = 'com.ourstory.Main'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+// Required for macOS GLFW initialization
+tasks.named('run', JavaExec) {
+    if (System.getProperty('os.name').toLowerCase().contains('mac')) {
+        jvmArgs '-XstartOnFirstThread'
+    }
+}
