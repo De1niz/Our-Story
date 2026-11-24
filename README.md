@@ -1,4 +1,4 @@
-# Our Story — Java 3D Game Prototype
+# Our Story — Java 3D Game Prototype - Under Development
 
 This is the first playable prototype for a 12-month relationship memory adventure.
 
